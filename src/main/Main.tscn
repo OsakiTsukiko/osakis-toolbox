@@ -35,7 +35,6 @@ margin_bottom = 590.0
 tab_align = 0
 
 [node name="Main" type="Control" parent="Panel/MarginContainer/TabContainer"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
@@ -53,7 +52,6 @@ margin_top = 227.0
 margin_right = 748.0
 margin_bottom = 316.0
 rect_min_size = Vector2( 500, 0 )
-focus_mode = 2
 custom_fonts/bold_font = SubResource( 1 )
 custom_fonts/normal_font = SubResource( 2 )
 bbcode_enabled = true
@@ -66,7 +64,6 @@ Osaki's Toolbox
 
 A collection of weird and sometimes useful stuff I made... All under MIT License!"
 fit_content_height = true
-selection_enabled = true
 
 [node name="TextureRect" type="TextureRect" parent="Panel/MarginContainer/TabContainer/Main"]
 anchor_left = 1.0
@@ -79,6 +76,7 @@ texture = ExtResource( 1 )
 expand = true
 
 [node name="WFC" type="Control" parent="Panel/MarginContainer/TabContainer"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
