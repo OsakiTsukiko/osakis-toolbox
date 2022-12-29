@@ -1,3 +1,4 @@
 .import
 default_env.tres
-build/*
+
+build
