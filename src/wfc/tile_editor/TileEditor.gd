@@ -69,7 +69,6 @@ func fill_tile_selector():
 
 func get_texture_in_atlas(id: int):
 	var size = texture_atlas.get_size() / cell_size
-	print(size)
 	if (id >= size.x * size.y):
 		return null
 	var pos := Vector2.ZERO
