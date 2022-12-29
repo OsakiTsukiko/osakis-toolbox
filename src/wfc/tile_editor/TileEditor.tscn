@@ -1,0 +1,161 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://src/wfc/tile_editor/TileEditor.gd" type="Script" id=1]
+[ext_resource path="res://assets/images/godot_icon.png" type="Texture" id=2]
+[ext_resource path="res://src/wfc/tile_editor/monocraft_df.tres" type="DynamicFont" id=3]
+
+[node name="TileEditor" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+
+[node name="HSplitContainer" type="HSplitContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+split_offset = 675
+
+[node name="Tiles" type="Panel" parent="HSplitContainer"]
+margin_right = 675.0
+margin_bottom = 600.0
+
+[node name="Settings" type="Panel" parent="HSplitContainer"]
+margin_left = 687.0
+margin_right = 1024.0
+margin_bottom = 600.0
+
+[node name="MarginContainer" type="MarginContainer" parent="HSplitContainer/Settings"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/margin_right = 10
+custom_constants/margin_top = 10
+custom_constants/margin_left = 10
+custom_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HSplitContainer/Settings/MarginContainer"]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 327.0
+margin_bottom = 590.0
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="HSplitContainer/Settings/MarginContainer/VBoxContainer"]
+margin_right = 317.0
+margin_bottom = 64.0
+
+[node name="Label" type="Label" parent="HSplitContainer/Settings/MarginContainer/VBoxContainer/HBoxContainer2"]
+margin_top = 23.0
+margin_right = 249.0
+margin_bottom = 40.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 3 )
+text = "Selected Brush (Tile)"
+align = 1
+
+[node name="Brush" type="TextureRect" parent="HSplitContainer/Settings/MarginContainer/VBoxContainer/HBoxContainer2"]
+margin_left = 253.0
+margin_right = 317.0
+margin_bottom = 64.0
+rect_min_size = Vector2( 64, 64 )
+expand = true
+stretch_mode = 6
+
+[node name="SelectTextureBTN" type="Button" parent="HSplitContainer/Settings/MarginContainer/VBoxContainer"]
+margin_top = 68.0
+margin_right = 317.0
+margin_bottom = 91.0
+custom_fonts/font = ExtResource( 3 )
+text = "Select Texture"
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="HSplitContainer/Settings/MarginContainer/VBoxContainer"]
+visible = false
+margin_top = 95.0
+margin_right = 317.0
+margin_bottom = 119.0
+
+[node name="Label" type="Label" parent="HSplitContainer/Settings/MarginContainer/VBoxContainer/HBoxContainer3"]
+margin_top = 3.0
+margin_right = 289.0
+margin_bottom = 20.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 3 )
+text = "Pixel Art"
+align = 2
+
+[node name="IsPixelArt" type="CheckBox" parent="HSplitContainer/Settings/MarginContainer/VBoxContainer/HBoxContainer3"]
+margin_left = 293.0
+margin_right = 317.0
+margin_bottom = 24.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HSplitContainer/Settings/MarginContainer/VBoxContainer"]
+margin_top = 95.0
+margin_right = 317.0
+margin_bottom = 119.0
+
+[node name="HLabel" type="Label" parent="HSplitContainer/Settings/MarginContainer/VBoxContainer/HBoxContainer"]
+margin_top = 3.0
+margin_right = 77.0
+margin_bottom = 20.0
+custom_fonts/font = ExtResource( 3 )
+text = "HFrames"
+
+[node name="HSpinBox" type="SpinBox" parent="HSplitContainer/Settings/MarginContainer/VBoxContainer/HBoxContainer"]
+margin_left = 81.0
+margin_right = 156.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+min_value = 1.0
+max_value = 10000.0
+value = 1.0
+align = 2
+
+[node name="VLabel" type="Label" parent="HSplitContainer/Settings/MarginContainer/VBoxContainer/HBoxContainer"]
+margin_left = 160.0
+margin_top = 3.0
+margin_right = 237.0
+margin_bottom = 20.0
+custom_fonts/font = ExtResource( 3 )
+text = "VFrames"
+
+[node name="VSpinBox" type="SpinBox" parent="HSplitContainer/Settings/MarginContainer/VBoxContainer/HBoxContainer"]
+margin_left = 241.0
+margin_right = 317.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+min_value = 1.0
+max_value = 10000.0
+value = 1.0
+align = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="HSplitContainer/Settings/MarginContainer/VBoxContainer"]
+margin_top = 123.0
+margin_right = 317.0
+margin_bottom = 580.0
+size_flags_vertical = 3
+
+[node name="TSContainer" type="GridContainer" parent="HSplitContainer/Settings/MarginContainer/VBoxContainer/ScrollContainer"]
+columns = 4
+
+[node name="TextureButton" type="TextureButton" parent="HSplitContainer/Settings/MarginContainer/VBoxContainer/ScrollContainer/TSContainer"]
+visible = false
+margin_right = 64.0
+margin_bottom = 64.0
+rect_min_size = Vector2( 64, 64 )
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource( 2 )
+expand = true
+stretch_mode = 5
+
+[node name="FileDialog" type="FileDialog" parent="."]
+margin_right = 315.0
+margin_bottom = 130.0
+rect_min_size = Vector2( 600, 280 )
+window_title = "Open a File"
+resizable = true
+mode = 0
+access = 2
+filters = PoolStringArray( "*.png, *.jpg, *.jpeg ; Supported Images" )
+
+[connection signal="pressed" from="HSplitContainer/Settings/MarginContainer/VBoxContainer/SelectTextureBTN" to="." method="_on_STBTN_pressed"]
+[connection signal="toggled" from="HSplitContainer/Settings/MarginContainer/VBoxContainer/HBoxContainer3/IsPixelArt" to="." method="_on_IsPixelArt_toggled"]
+[connection signal="value_changed" from="HSplitContainer/Settings/MarginContainer/VBoxContainer/HBoxContainer/HSpinBox" to="." method="_on_HSpinBox_value_changed"]
+[connection signal="value_changed" from="HSplitContainer/Settings/MarginContainer/VBoxContainer/HBoxContainer/VSpinBox" to="." method="_on_VSpinBox_value_changed"]
+[connection signal="file_selected" from="FileDialog" to="." method="_on_FileDialog_file_selected"]

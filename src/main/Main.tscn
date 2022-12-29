@@ -1,14 +1,14 @@
 [gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://assets/fonts/PressStart2P.ttf" type="DynamicFontData" id=1]
-[ext_resource path="res://assets/fonts/Monocraft.otf" type="DynamicFontData" id=2]
-[ext_resource path="res://assets/images/oki_builder.png" type="Texture" id=3]
+[ext_resource path="res://assets/images/oki_builder.png" type="Texture" id=1]
+[ext_resource path="res://assets/fonts/PressStart2P.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://assets/fonts/Monocraft.otf" type="DynamicFontData" id=3]
 
 [sub_resource type="DynamicFont" id=1]
-font_data = ExtResource( 1 )
+font_data = ExtResource( 2 )
 
 [sub_resource type="DynamicFont" id=2]
-font_data = ExtResource( 2 )
+font_data = ExtResource( 3 )
 
 [node name="Main" type="Control"]
 anchor_right = 1.0
@@ -31,8 +31,10 @@ margin_left = 10.0
 margin_top = 10.0
 margin_right = 1014.0
 margin_bottom = 590.0
+tab_align = 0
 
 [node name="Main" type="Control" parent="Panel/MarginContainer/TabContainer"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
@@ -72,5 +74,18 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = -199.0
 margin_top = -199.0
-texture = ExtResource( 3 )
+texture = ExtResource( 1 )
 expand = true
+
+[node name="WFC" type="Control" parent="Panel/MarginContainer/TabContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 32.0
+margin_right = -4.0
+margin_bottom = -4.0
+
+[node name="TabContainer" type="TabContainer" parent="Panel/MarginContainer/TabContainer/WFC"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+tab_align = 2
