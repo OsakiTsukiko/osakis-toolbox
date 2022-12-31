@@ -6,29 +6,32 @@ class PlacedTile:
 	var id: int
 	var x: int = 0
 	var y: int = 0
+	var offset: Vector2
 	var scale: int = 1
 	var node: TextureRect
 	
-	func _init(x, y, scale, texture_id):
+	func _init(x, y, scale, offset, texture_id):
 		id = texture_id
 		self.x = x
 		self.y = y
 		self.scale = scale
+		self.offset = offset
 		node = TextureRect.new()
 		node.expand = true
 		node.rect_min_size = Vector2(1, 1)
 		node.rect_size = Vector2(1, 1)
-		node.rect_scale = Vector2(scale, scale)
-		node.rect_global_position = Vector2(x, y) * scale
-		node.texture = Gamestate.get_texture_in_atlas(texture_id)
-	
+		
 	func redraw():
+		node.rect_scale = Vector2(scale, scale)
 		node.texture = Gamestate.get_texture_in_atlas(id)
+		node.rect_global_position = offset + Vector2(x, y) * scale
 
 onready var tile_cont = $HSplitContainer/Tiles
 
 # var tile_size = 1.0
 var scale = 32.0
+var t_scale = 32.0
+var eraser_on = false
 
 var placed_tiles_array = []
 
@@ -58,23 +61,31 @@ func _ready():
 #	set_process(false)
 	pass
 
+func _process(delta):
+	if (t_scale != scale):
+		t_scale = scale
+		for pt in placed_tiles_array:
+			pt.scale = scale
+			pt.redraw()
+
 func paint(canvas_pos: Vector2, offset: Vector2):
 	if (brush == -1):
 		return
 	var p = Vector2(floor(canvas_pos.x / scale), floor(canvas_pos.y / scale))
-	# add offset
 	for pt in placed_tiles_array:
 		if (pt.x == p.x && pt.y == p.y):
-			pt.id = brush
-			pt.redraw()
+			if (eraser_on):
+				pt.node.queue_free()
+				placed_tiles_array.erase(pt)
+			else:
+				pt.id = brush
+				pt.redraw()
 			return
-	var pt = PlacedTile.new(p.x, p.y, scale, brush)
-	placed_tiles_array.append(pt)
-	tile_cont.add_child(pt.node)
-
-func _process(delta):
-	if (iter_tiles):
-		pass
+	if (!eraser_on):
+		var pt = PlacedTile.new(p.x, p.y, scale, offset, brush)
+		placed_tiles_array.append(pt)
+		tile_cont.add_child(pt.node)
+		pt.redraw()
 
 # Settings
 
@@ -140,3 +151,9 @@ func _st_pressed(id: int):
 #	is_pixel_art = button_pressed
 #	if (file_path != null):
 #		_on_FileDialog_file_selected(file_path)
+
+func _on_ScaleSpinBox_value_changed(value):
+	scale = value
+	
+func _on_EraserBTN_toggled(button_pressed):
+	eraser_on = button_pressed

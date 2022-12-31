@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://src/wfc/tile_editor/TileEditor.gd" type="Script" id=1]
 [ext_resource path="res://assets/images/godot_icon.png" type="Texture" id=2]
 [ext_resource path="res://src/wfc/tile_editor/monocraft_df.tres" type="DynamicFont" id=3]
 [ext_resource path="res://src/wfc/tile_editor/Tiles.gd" type="Script" id=4]
+[ext_resource path="res://src/wfc/tile_editor/separator_theme.tres" type="StyleBox" id=5]
 
 [node name="TileEditor" type="Control"]
 anchor_right = 1.0
@@ -69,6 +70,20 @@ custom_fonts/font = ExtResource( 3 )
 text = "Select Texture"
 clip_text = true
 
+[node name="EraserBTN" type="Button" parent="HSplitContainer/Settings/MarginContainer/VBoxContainer"]
+margin_top = 95.0
+margin_right = 317.0
+margin_bottom = 118.0
+custom_fonts/font = ExtResource( 3 )
+toggle_mode = true
+text = "Eeraser"
+
+[node name="HSeparator3" type="HSeparator" parent="HSplitContainer/Settings/MarginContainer/VBoxContainer"]
+margin_top = 122.0
+margin_right = 317.0
+margin_bottom = 126.0
+custom_styles/separator = ExtResource( 5 )
+
 [node name="HBoxContainer3" type="HBoxContainer" parent="HSplitContainer/Settings/MarginContainer/VBoxContainer"]
 visible = false
 margin_top = 95.0
@@ -90,9 +105,9 @@ margin_right = 317.0
 margin_bottom = 24.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="HSplitContainer/Settings/MarginContainer/VBoxContainer"]
-margin_top = 95.0
+margin_top = 130.0
 margin_right = 317.0
-margin_bottom = 119.0
+margin_bottom = 154.0
 
 [node name="HLabel" type="Label" parent="HSplitContainer/Settings/MarginContainer/VBoxContainer/HBoxContainer"]
 margin_top = 3.0
@@ -114,9 +129,9 @@ value = 1.0
 align = 2
 
 [node name="HBoxContainer4" type="HBoxContainer" parent="HSplitContainer/Settings/MarginContainer/VBoxContainer"]
-margin_top = 123.0
+margin_top = 158.0
 margin_right = 317.0
-margin_bottom = 147.0
+margin_bottom = 182.0
 
 [node name="VLabel" type="Label" parent="HSplitContainer/Settings/MarginContainer/VBoxContainer/HBoxContainer4"]
 margin_top = 3.0
@@ -137,8 +152,44 @@ max_value = 10000.0
 value = 1.0
 align = 2
 
+[node name="HSeparator" type="HSeparator" parent="HSplitContainer/Settings/MarginContainer/VBoxContainer"]
+margin_top = 186.0
+margin_right = 317.0
+margin_bottom = 190.0
+custom_styles/separator = ExtResource( 5 )
+
+[node name="HBoxContainer5" type="HBoxContainer" parent="HSplitContainer/Settings/MarginContainer/VBoxContainer"]
+margin_top = 194.0
+margin_right = 317.0
+margin_bottom = 218.0
+
+[node name="SLabel" type="Label" parent="HSplitContainer/Settings/MarginContainer/VBoxContainer/HBoxContainer5"]
+margin_top = 3.0
+margin_right = 156.0
+margin_bottom = 20.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 3 )
+text = "Scale"
+clip_text = true
+
+[node name="ScaleSpinBox" type="SpinBox" parent="HSplitContainer/Settings/MarginContainer/VBoxContainer/HBoxContainer5"]
+margin_left = 160.0
+margin_right = 317.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+min_value = 1.0
+max_value = 10000.0
+value = 32.0
+align = 2
+
+[node name="HSeparator2" type="HSeparator" parent="HSplitContainer/Settings/MarginContainer/VBoxContainer"]
+margin_top = 222.0
+margin_right = 317.0
+margin_bottom = 226.0
+custom_styles/separator = ExtResource( 5 )
+
 [node name="ScrollContainer" type="ScrollContainer" parent="HSplitContainer/Settings/MarginContainer/VBoxContainer"]
-margin_top = 151.0
+margin_top = 230.0
 margin_right = 317.0
 margin_bottom = 580.0
 size_flags_vertical = 3
@@ -167,7 +218,9 @@ access = 2
 filters = PoolStringArray( "*.png, *.jpg, *.jpeg ; Supported Images" )
 
 [connection signal="pressed" from="HSplitContainer/Settings/MarginContainer/VBoxContainer/SelectTextureBTN" to="." method="_on_STBTN_pressed"]
+[connection signal="toggled" from="HSplitContainer/Settings/MarginContainer/VBoxContainer/EraserBTN" to="." method="_on_EraserBTN_toggled"]
 [connection signal="toggled" from="HSplitContainer/Settings/MarginContainer/VBoxContainer/HBoxContainer3/IsPixelArt" to="." method="_on_IsPixelArt_toggled"]
 [connection signal="value_changed" from="HSplitContainer/Settings/MarginContainer/VBoxContainer/HBoxContainer/HSpinBox" to="." method="_on_HSpinBox_value_changed"]
 [connection signal="value_changed" from="HSplitContainer/Settings/MarginContainer/VBoxContainer/HBoxContainer4/VSpinBox" to="." method="_on_VSpinBox_value_changed"]
+[connection signal="value_changed" from="HSplitContainer/Settings/MarginContainer/VBoxContainer/HBoxContainer5/ScaleSpinBox" to="." method="_on_ScaleSpinBox_value_changed"]
 [connection signal="file_selected" from="FileDialog" to="." method="_on_FileDialog_file_selected"]
