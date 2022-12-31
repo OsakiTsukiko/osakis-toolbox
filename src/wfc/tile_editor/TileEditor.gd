@@ -45,6 +45,7 @@ onready var brush_tr = $HSplitContainer/Settings/MarginContainer/VBoxContainer/H
 
 var file_path = null
 var is_pixel_art: bool = true
+var add_self_tile: bool = true
 # ^ normally would be false
 
 var texture_file: ImageTexture = null 
@@ -86,6 +87,12 @@ func paint(canvas_pos: Vector2, offset: Vector2):
 		placed_tiles_array.append(pt)
 		tile_cont.add_child(pt.node)
 		pt.redraw()
+
+func find_node_by_coords(var x: int, var y: int):
+	for pt in placed_tiles_array:
+		if (pt.x == x && pt.y == y):
+			return pt
+	return null
 
 # Settings
 
@@ -157,3 +164,36 @@ func _on_ScaleSpinBox_value_changed(value):
 	
 func _on_EraserBTN_toggled(button_pressed):
 	eraser_on = button_pressed
+
+func _on_AddSelfTile_toggled(button_pressed):
+	add_self_tile = button_pressed
+
+func _on_ExportBTN_pressed():
+	var exp_obj = []
+	for i in range(hframes * vframes):
+		exp_obj.append([])
+	
+	for pt in placed_tiles_array:
+		var id = pt.id
+		if (add_self_tile):
+			if (!exp_obj[id].has(id)):
+				exp_obj[id].append(id)
+		for i in [-1, 1]:
+			var a = find_node_by_coords(pt.x + i, pt.y)
+			var b = find_node_by_coords(pt.x, pt.y + i)
+			if (a != null):
+				if (!exp_obj[id].has(a.id)):
+					exp_obj[id].append(a.id)
+			if (b != null):
+				if (!exp_obj[id].has(b.id)):
+					exp_obj[id].append(b.id)
+	
+#	for i in exp_obj:
+#		if i.size() != 0:
+#			print(i)
+	var file = File.new()
+	file.open("user://export.tiles", File.WRITE)
+	file.store_string(JSON.print(exp_obj))
+	file.close()
+	
+	OS.shell_open(str("file://", ProjectSettings.globalize_path("user://export.tiles")))

@@ -191,7 +191,7 @@ custom_styles/separator = ExtResource( 5 )
 [node name="ScrollContainer" type="ScrollContainer" parent="HSplitContainer/Settings/MarginContainer/VBoxContainer"]
 margin_top = 230.0
 margin_right = 317.0
-margin_bottom = 580.0
+margin_bottom = 518.0
 size_flags_vertical = 3
 
 [node name="TSContainer" type="GridContainer" parent="HSplitContainer/Settings/MarginContainer/VBoxContainer/ScrollContainer"]
@@ -206,6 +206,28 @@ mouse_default_cursor_shape = 2
 texture_normal = ExtResource( 2 )
 expand = true
 stretch_mode = 5
+
+[node name="HSeparator4" type="HSeparator" parent="HSplitContainer/Settings/MarginContainer/VBoxContainer"]
+margin_top = 522.0
+margin_right = 317.0
+margin_bottom = 526.0
+custom_styles/separator = ExtResource( 5 )
+
+[node name="AddSelfTile" type="Button" parent="HSplitContainer/Settings/MarginContainer/VBoxContainer"]
+margin_top = 530.0
+margin_right = 317.0
+margin_bottom = 553.0
+custom_fonts/font = ExtResource( 3 )
+toggle_mode = true
+pressed = true
+text = "Add Self Tile"
+
+[node name="ExportBTN" type="Button" parent="HSplitContainer/Settings/MarginContainer/VBoxContainer"]
+margin_top = 557.0
+margin_right = 317.0
+margin_bottom = 580.0
+custom_fonts/font = ExtResource( 3 )
+text = "Export"
 
 [node name="FileDialog" type="FileDialog" parent="."]
 margin_right = 315.0
@@ -223,4 +245,6 @@ filters = PoolStringArray( "*.png, *.jpg, *.jpeg ; Supported Images" )
 [connection signal="value_changed" from="HSplitContainer/Settings/MarginContainer/VBoxContainer/HBoxContainer/HSpinBox" to="." method="_on_HSpinBox_value_changed"]
 [connection signal="value_changed" from="HSplitContainer/Settings/MarginContainer/VBoxContainer/HBoxContainer4/VSpinBox" to="." method="_on_VSpinBox_value_changed"]
 [connection signal="value_changed" from="HSplitContainer/Settings/MarginContainer/VBoxContainer/HBoxContainer5/ScaleSpinBox" to="." method="_on_ScaleSpinBox_value_changed"]
+[connection signal="toggled" from="HSplitContainer/Settings/MarginContainer/VBoxContainer/AddSelfTile" to="." method="_on_AddSelfTile_toggled"]
+[connection signal="pressed" from="HSplitContainer/Settings/MarginContainer/VBoxContainer/ExportBTN" to="." method="_on_ExportBTN_pressed"]
 [connection signal="file_selected" from="FileDialog" to="." method="_on_FileDialog_file_selected"]
