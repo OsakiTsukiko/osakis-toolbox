@@ -16,6 +16,8 @@ func _input(event):
 			):
 				if (event.is_action_pressed("left_click")):
 					left_click_pressed = true
+					if (get_parent().get_parent().has_method("paint")):
+						get_parent().get_parent().paint(event.position - rect_global_position, rect_global_position)
 				if (event is InputEventMouseMotion && left_click_pressed):
 					if (get_parent().get_parent().has_method("paint")):
 						get_parent().get_parent().paint(event.position - rect_global_position, rect_global_position)
