@@ -16,6 +16,10 @@ var scene_list = [
 	SceneObj.new( 
 		"res://src/wfc/tile_editor/TileEditor.tscn", 
 		"Tile Editor" 
+	),
+	SceneObj.new( 
+		"res://src/blog/Blog.tscn", 
+		"Blog" 
 	)
 ]
 

@@ -1,0 +1,127 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://src/blog/Blog.gd" type="Script" id=1]
+[ext_resource path="res://assets/fonts/PressStart2P.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://assets/images/oki_builder.png" type="Texture" id=3]
+[ext_resource path="res://assets/fonts/Monocraft.otf" type="DynamicFontData" id=4]
+
+[sub_resource type="DynamicFont" id=1]
+size = 32
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 20
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=3]
+outline_color = Color( 0.905882, 0.698039, 0.203922, 1 )
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=6]
+outline_color = Color( 0.92549, 0.654902, 0.419608, 1 )
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 20
+outline_color = Color( 1, 0.894118, 0.470588, 1 )
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=5]
+outline_color = Color( 0.847059, 0.847059, 0.847059, 1 )
+font_data = ExtResource( 4 )
+
+[node name="Blog" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+
+[node name="Networking" type="Node" parent="."]
+
+[node name="Panel" type="Panel" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="LoadingCont" type="CenterContainer" parent="Panel"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Panel/LoadingCont"]
+margin_left = 262.0
+margin_top = 250.0
+margin_right = 762.0
+margin_bottom = 349.0
+rect_min_size = Vector2( 500, 0 )
+rect_clip_content = false
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/normal_font = SubResource( 1 )
+bbcode_enabled = true
+bbcode_text = "
+[center][wave amp=50 freq=2]Loading...[/wave][/center]
+"
+text = "
+Loading...
+"
+fit_content_height = true
+
+[node name="ErrorCont" type="CenterContainer" parent="Panel"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/ErrorCont"]
+margin_left = 437.0
+margin_top = 201.0
+margin_right = 587.0
+margin_bottom = 399.0
+
+[node name="TextureRect" type="TextureRect" parent="Panel/ErrorCont/VBoxContainer"]
+margin_right = 150.0
+margin_bottom = 150.0
+rect_min_size = Vector2( 150, 150 )
+texture = ExtResource( 3 )
+expand = true
+stretch_mode = 6
+
+[node name="Padding" type="Control" parent="Panel/ErrorCont/VBoxContainer"]
+margin_top = 154.0
+margin_right = 150.0
+margin_bottom = 174.0
+rect_min_size = Vector2( 0, 20 )
+
+[node name="ErrorLabel" type="Label" parent="Panel/ErrorCont/VBoxContainer"]
+margin_top = 178.0
+margin_right = 150.0
+margin_bottom = 198.0
+custom_fonts/font = SubResource( 2 )
+text = "Error!"
+align = 1
+valign = 1
+
+[node name="MainCont" type="MarginContainer" parent="Panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/margin_right = 25
+custom_constants/margin_top = 25
+custom_constants/margin_left = 25
+custom_constants/margin_bottom = 25
+
+[node name="BlogText" type="RichTextLabel" parent="Panel/MainCont"]
+margin_left = 25.0
+margin_top = 25.0
+margin_right = 999.0
+margin_bottom = 575.0
+rect_clip_content = false
+focus_mode = 2
+custom_colors/default_color = Color( 0.847059, 0.847059, 0.847059, 1 )
+custom_fonts/mono_font = SubResource( 3 )
+custom_fonts/italics_font = SubResource( 6 )
+custom_fonts/bold_font = SubResource( 4 )
+custom_fonts/normal_font = SubResource( 5 )
+bbcode_enabled = true
+bbcode_text = "
+"
+text = "
+"
+selection_enabled = true
