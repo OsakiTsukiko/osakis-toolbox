@@ -112,7 +112,6 @@ margin_left = 25.0
 margin_top = 25.0
 margin_right = 999.0
 margin_bottom = 575.0
-rect_clip_content = false
 focus_mode = 2
 custom_colors/default_color = Color( 0.847059, 0.847059, 0.847059, 1 )
 custom_fonts/mono_font = SubResource( 3 )
@@ -120,8 +119,4 @@ custom_fonts/italics_font = SubResource( 6 )
 custom_fonts/bold_font = SubResource( 4 )
 custom_fonts/normal_font = SubResource( 5 )
 bbcode_enabled = true
-bbcode_text = "
-"
-text = "
-"
 selection_enabled = true

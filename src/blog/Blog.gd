@@ -54,6 +54,8 @@ func http_req_handler(result, response_code, headers, body, req_node, id):
 						text = text.replace("[code]", "[color=#ace66a][code]")
 						text = text.replace("[/code]", "[/code][/color]")
 						blog_text.bbcode_text += (text + "\n\n")
+					if (segment["type"] == "CODE"):
+						blog_text.bbcode_text += ("[color=#ace66a][code]" + segment["text"] + "[/code][/color]\n\n")
 			main_cont.visible = true
 		elif (response_code == 404):
 			do_error("Wrong URL! E404")
