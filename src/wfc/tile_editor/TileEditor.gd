@@ -115,7 +115,6 @@ func fill_tile_selector():
 
 func _on_STBTN_pressed():
 	file_dialog.popup_centered()
-	file_dialog.popup()
 
 func _on_FileDialog_file_selected(path):
 	print(path)
